@@ -12,9 +12,9 @@ app.get('/', function (req, res) {
 var articleOne={
     title:'Article-one | Chander Raj Singh',
     heading:'Article-one',
-    content:`<p>This is my 3rd Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.</p>
+    content:`<p>This is my 1st Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.</p>
             <p>
-                This is my 3rd Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.
+                This is my 1st Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.
             </p>`
 };
 
