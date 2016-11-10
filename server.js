@@ -9,9 +9,49 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
+var articleOne={
+    title:'Article-one | Chander Raj Singh',
+    heading:'Article-one',
+    content:`<p>This is my 3rd Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.</p>
+            <p>
+                This is my 3rd Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.This is my first Article On imad 2016.
+            </p>`
+};
+
+function createTemplate(data)
+{
+    var title=data.title;
+    var heading=data.heading;
+    var content=data.content;
+    var htmlTemplate=`<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <meta name="viewport" content="width-device-width,intial-scale-1" />
+        <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="cont">
+        <div>
+            <a href='/'>HOME</a>
+        </div>
+        <hr>
+        <h3>
+            ${heading}
+        </h3>
+        <div>
+            ${content}
+        </div></div>
+    </body>
+</html>`;
+return htmlTemplate;
+}
+
 app.get('/article-one',function(req,res){
    // res.send('Article one has requested and will be served.');
-    res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  //  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  res.send(createTemplate(articleOne));
 });
 app.get('/article-two',function(req,res){
    // res.send('Article one has requested and will be served.');
