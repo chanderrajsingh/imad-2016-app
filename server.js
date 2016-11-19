@@ -77,6 +77,9 @@ ${content}
 `;
 return htmlTemplate;
 }
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
 
 function hash (input, salt) {
     // how do we create a hash?
@@ -140,9 +143,6 @@ app.get('/test-db', function (req, res) {
 );
 });
 
- app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
