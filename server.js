@@ -74,7 +74,6 @@ app.get('/', function (req, res) {
 
 
 function hash (input, salt) {
-    // How do we create a hash?
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
     return ["pbkdf2", "10000", salt, hashed.toString('hex')].join('$');
 }
@@ -113,14 +112,11 @@ app.post('/login', function (req, res) {
               // Match the password
               var dbString = result.rows[0].password;
               var salt = dbString.split('$')[2];
-              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
+              var hashedPassword = hash(password, salt); 
               if (hashedPassword === dbString) {
                 
-                // Set the session
                 req.session.auth = {userId: result.rows[0].id};
-                // set cookie with a session id
-                // internally, on the server side, it maps the session id to an object
-                // { auth: {userId }}
+            
                 
                 res.send('credentials correct!');
                 
@@ -167,8 +163,6 @@ app.get('/get-articles', function (req, res) {
 });
 
 app.get('/get-comments/:articleName', function (req, res) {
-   // make a select request
-   // return a response with the results
    pool.query('SELECT comment.*, "user".username FROM article, comment, "user" WHERE article.title = $1 AND article.id = comment.article_id AND comment.user_id = "user".id ORDER BY comment.timestamp DESC', [req.params.articleName], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
@@ -179,9 +173,8 @@ app.get('/get-comments/:articleName', function (req, res) {
 });
 
 app.post('/submit-comment/:articleName', function (req, res) {
-   // Check if the user is logged in
+   
     if (req.session && req.session.auth && req.session.auth.userId) {
-        // First check if the article exists and get the article-id
         pool.query('SELECT * from article where title = $1', [req.params.articleName], function (err, result) {
             if (err) {
                 res.status(500).send(err.toString());
@@ -190,7 +183,6 @@ app.post('/submit-comment/:articleName', function (req, res) {
                     res.status(400).send('Article not found');
                 } else {
                     var articleId = result.rows[0].id;
-                    // Now insert the right comment for this article
                     pool.query(
                         "INSERT INTO comment (comment, article_id, user_id) VALUES ($1, $2, $3)",
                         [req.body.comment, articleId, req.session.auth.userId],
@@ -210,7 +202,6 @@ app.post('/submit-comment/:articleName', function (req, res) {
 });
 
 app.get('/articles/:articleName', function (req, res) {
-  // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
   pool.query("SELECT * FROM article WHERE title = $1", [req.params.articleName], function (err, result) {
     if (err) {
         res.status(500).send(err.toString());
