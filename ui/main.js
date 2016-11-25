@@ -1,12 +1,15 @@
 
 function loadLoginForm () {
     var loginHtml = `
-        <h3>Login/Register to unlock awesome features</h3>
-        <input type="text" id="username" placeholder="username" />
-        <input type="password" placeholder="password" id="password" />
+        <h3 style="color:#f4426b">Login/Register If You want to comment</h3>
+        <label id="icon" for="username" ><i class="icon-envelope "></i></label>
+        <input type="text" id="username" placeholder="username" style="border-color:#f4426b"required/>
+        <label id="icon" for="password"><i class="icon-user"></i></label>
+        <input type="password" placeholder="password" id="password" style="border-color:#f4426b"required/>
         <br/><br/>
-        <input type="submit" id="login_btn" value="Login" />
-        <input type="submit" id="register_btn" value="Register" />
+        <input type="submit" id="login_btn" class="button special big" style="margin-right:50px;" value="Login" />
+       
+        <input type="submit" id="register_btn" class="button special big" value="Register" />
         `;
     document.getElementById('login_area').innerHTML = loginHtml;
     
@@ -14,6 +17,7 @@ function loadLoginForm () {
     var submit = document.getElementById('login_btn');
     submit.onclick = function () {
         // Create a request object
+
         var request = new XMLHttpRequest();
         
         // Capture the response and store it in a variable
@@ -50,6 +54,7 @@ function loadLoginForm () {
     
     var register = document.getElementById('register_btn');
     register.onclick = function () {
+
         // Create a request object
         var request = new XMLHttpRequest();
         
@@ -69,21 +74,28 @@ function loadLoginForm () {
         
         // Make the request
         var username = document.getElementById('username').value;
+        
+        if(username=="")
+          alert('username cannot be empty');
         var password = document.getElementById('password').value;
+        if(password=="")
+          alert('password cannot be empty');
+        if(username!=""&&password!="")
+        {
         console.log(username);
         console.log(password);
         request.open('POST', '/create-user', true);
         request.setRequestHeader('Content-Type', 'application/json');
         request.send(JSON.stringify({username: username, password: password}));  
         register.value = 'Registering...';
-    
+      }
     };
 }
 
 function loadLoggedInUser (username) {
     var loginArea = document.getElementById('login_area');
     loginArea.innerHTML = `
-        <h3> Hi <i>${username}</i></h3>
+        <h3 style="color:#f4426b"> Hi <i>${username}</i></h3>
         <a href="/logout">Logout</a>
     `;
 }
@@ -115,9 +127,9 @@ function loadArticles () {
                 var content = '<ul>';
                 var articleData = JSON.parse(this.responseText);
                 for (var i=0; i< articleData.length; i++) {
-                    content += `<li>
+                    content += `<li><h4 style="color:#f4426b">
                     <a href="/articles/${articleData[i].title}">${articleData[i].heading}</a>
-                    (${articleData[i].date.split('T')[0]})</li>`;
+                    (${articleData[i].date.split('T')[0]})<h4></li>`;
                 }
                 content += "</ul>"
                 articles.innerHTML = content;
