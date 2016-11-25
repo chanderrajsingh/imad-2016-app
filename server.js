@@ -71,8 +71,8 @@ function createTemplate (data) {
               <div>
                   ${date.toDateString()}
               </div>
-              <div>
-                ${content}
+              <div><pre>
+                ${content}</pre>
               </div>
               <hr/>
               <h4>Comments</h4>
