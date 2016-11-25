@@ -71,10 +71,10 @@ function createTemplate (data) {
               <div>
                   ${date.toDateString()}
               </div>
-              <center>
-              <div style="width:80%"><pre>
+              
+              <div style="width:80%"><pre style="width:80%">
                 ${content}</pre>
-              </div></center>
+              </div>
               <hr/>
               <h4>Comments</h4>
               <div id="comment_form">
