@@ -72,8 +72,8 @@ function createTemplate (data) {
                   ${date.toDateString()}
               </div>
               
-              <div style="margin-left:10%;margin-right:10%;overflow-x: hidden;font-family:verdana"><pre>
-                ${content}</pre>
+              <div style="margin-left:10%;margin-right:10%;">
+                ${content}
               </div>
               <hr/>
               <h4>Comments</h4>
