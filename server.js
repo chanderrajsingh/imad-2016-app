@@ -72,7 +72,7 @@ function createTemplate (data) {
                   ${date.toDateString()}
               </div>
               
-              <div style="margin-left:10%;margin-right:10%;">
+              <div style="width:80%;">
                 ${content}
               </div>
               <hr/>
