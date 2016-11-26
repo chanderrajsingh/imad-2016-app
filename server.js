@@ -72,7 +72,8 @@ function createTemplate (data) {
                   ${date.toDateString()}
               </div>
               
-              <div style="width:80%">
+              <div style="width:80%;text-align: justify;
+    text-justify: inter-word;">
                 ${content}
               </div>
               <hr/>
